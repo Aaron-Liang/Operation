@@ -1,0 +1,71 @@
+﻿@model Operation.Models.ViewModels.MoneyTemplateViewModels
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel-body bg-info">
+        <form class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-sm-2 text-right">
+                    @Html.LabelFor(m => m.category, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @{
+                        List<SelectListItem> categoryList = new List<SelectListItem>
+                                        {
+                                          new SelectListItem{Text="請選擇", Value="", Selected=true},
+                                          new SelectListItem{Text="支出", Value="1"},
+                                          new SelectListItem{Text="收入", Value="2"}
+                                        };
+                    }
+
+                    @Html.DropDownListFor(m => m.category, categoryList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 text-right">
+                    @Html.LabelFor(m => m.money, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.money, htmlAttributes: new { @class = "form-control", @placeholder = "金額" })
+                    @Html.ValidationMessageFor(m => m.money, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 text-right">
+                    @Html.LabelFor(m => m.date, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.date, htmlAttributes: new { @class = "form-control", @placeholder = "日期" })
+                    @Html.ValidationMessageFor(m => m.date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 text-right">
+                    @Html.LabelFor(m => m.description, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(m => m.description, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button type="submit" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </form>
+    </div>
+}

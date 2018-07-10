@@ -1,0 +1,30 @@
+﻿@model Operation.Models.ViewModels.MoneyTemplateListViewModels
+
+<table id="ContentList" class="table table-bordered table-striped">
+    <thead class="bg-primary">
+        <tr>
+            <th width="10%">#</th>
+            <th width="30%">類別</th>
+            <th width="30%">日期</th>
+            <th width="30%">金額</th>
+        </tr>
+    </thead>
+
+    @{
+        var Money = @Html.Raw(ViewBag.vbMoney);
+    }
+
+    <tbody>
+
+        @for (int i = 0; i < 50; i++)
+        {
+            <tr>
+                <td width="10%">@i+1</td>
+                <td width="30%">支出</td>
+                <td width="30%">@(DateTime.Now.AddDays(i).ToString("yy-MM-dd"))</td>
+                <td width="30%">@(Money[i])</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
