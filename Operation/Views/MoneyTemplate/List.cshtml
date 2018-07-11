@@ -1,9 +1,9 @@
-﻿@model IEnumerable< Operation.Models.ViewModels.MoneyTemplateListViewModels>
+﻿@model IEnumerable<Operation.Models.ViewModels.MoneyTemplateListViewModels>
 @{
     var i = 0;
 }
 
-<table id="ContentList" class="table table-bordered table-striped">
+<table id="ContentList" class="table table-bordered table-striped table-hover">
     <thead class="bg-primary">
         <tr>
             <th width="10%">#</th>
@@ -19,7 +19,7 @@
                 <td width="10%">@(++i)</td>
                 <td width="30%">@item.Category</td>
                 <td width="30%">@item.Date.ToString("yyyy-MM-dd")</td>
-                <td width="30%">@item.Money.ToString("N0"))</td>
+                <td width="30%">@item.Money.ToString("N0")</td>
             </tr>
         }
 

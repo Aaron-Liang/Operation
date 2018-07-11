@@ -14,9 +14,10 @@ namespace Operation.Controllers
         {
             var source = new MoneyTemplateGroupViewModels
             {
-                MoneyTemplateListViewModels=GetFakeData()
+                MoneyTemplateViewModels     = new MoneyTemplateViewModels(),
+                MoneyTemplateListViewModels = GetFakeData()
             };
-            
+            //你在這裡用了這方式是非常糟的寫法，因為你用了組合的 ViewModel 所以導致本來根本不用傳遞的 Create 區塊卻需要 new 一個物件出來傳，這會造成如果你有實質型別表單就有預設值，會很難用。
             return View(source);
         }
 
