@@ -7,14 +7,14 @@ namespace Operation.Models.ViewModels
 {
     public class MoneyTemplateListViewModels
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public int no { get; set; }
+        public int No { get; set; }
 
-        public string category { get; set; }
+        public string Category { get; set; }
 
-        public int money { get; set; }
+        public int Money { get; set; }
 
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

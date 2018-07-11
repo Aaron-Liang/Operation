@@ -12,11 +12,27 @@ namespace Operation.Controllers
     {
         public ActionResult Index()
         {
-            RandomValue randomValue = new RandomValue();
-            var arrayMoney = randomValue.getNumbers(50, 5000);
-            ViewBag.vbMoney = arrayMoney;
+            var source = new MoneyTemplateGroupViewModels
+            {
+                MoneyTemplateViewModels     = new MoneyTemplateViewModels(),
+                MoneyTemplateListViewModels = GetFakeData()
+            };
+            //你在這裡用了這方式是非常糟的寫法，因為你用了組合的 ViewModel 所以導致本來根本不用傳遞的 Create 區塊卻需要 new 一個物件出來傳，這會造成如果你有實質型別表單就有預設值，會很難用。
+            return View(source);
+        }
 
-            return View();
+        private IEnumerable<MoneyTemplateListViewModels> GetFakeData()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                yield return new MoneyTemplateListViewModels
+                {
+                    Id       = i,
+                    Category = i % 2 == 0 ? "支出" : "收入",
+                    Date     = DateTime.Now.AddHours(i),
+                    Money    = i * 1000,
+                };
+            }
         }
 
         // GET: MoneyTemplate

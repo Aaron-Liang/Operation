@@ -7,7 +7,7 @@ namespace Operation.Models.ViewModels
 {
     public class MoneyTemplateGroupViewModels
     {
-        public MoneyTemplateViewModels moneyTemplateViewModels { get; set; }
-        public MoneyTemplateListViewModels moneyTemplateListViewModels { get; set; }
+        public MoneyTemplateViewModels MoneyTemplateViewModels { get; set; }
+        public IEnumerable<MoneyTemplateListViewModels> MoneyTemplateListViewModels { get; set; }
     }
 }

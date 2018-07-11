@@ -1,6 +1,9 @@
-﻿@model Operation.Models.ViewModels.MoneyTemplateListViewModels
+﻿@model IEnumerable<Operation.Models.ViewModels.MoneyTemplateListViewModels>
+@{
+    var i = 0;
+}
 
-<table id="ContentList" class="table table-bordered table-striped">
+<table id="ContentList" class="table table-bordered table-striped table-hover">
     <thead class="bg-primary">
         <tr>
             <th width="10%">#</th>
@@ -9,22 +12,17 @@
             <th width="30%">金額</th>
         </tr>
     </thead>
-
-    @{
-        var Money = @Html.Raw(ViewBag.vbMoney);
-    }
-
     <tbody>
-
-        @for (int i = 0; i < 50; i++)
+        @foreach (var item in Model)
         {
             <tr>
-                <td width="10%">@i+1</td>
-                <td width="30%">支出</td>
-                <td width="30%">@(DateTime.Now.AddDays(i).ToString("yy-MM-dd"))</td>
-                <td width="30%">@(Money[i])</td>
+                <td width="10%">@(++i)</td>
+                <td width="30%">@item.Category</td>
+                <td width="30%">@item.Date.ToString("yyyy-MM-dd")</td>
+                <td width="30%">@item.Money.ToString("N0")</td>
             </tr>
         }
+
     </tbody>
 </table>
 
