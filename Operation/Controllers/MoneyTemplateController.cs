@@ -12,11 +12,26 @@ namespace Operation.Controllers
     {
         public ActionResult Index()
         {
-            RandomValue randomValue = new RandomValue();
-            var arrayMoney = randomValue.getNumbers(50, 5000);
-            ViewBag.vbMoney = arrayMoney;
+            var source = new MoneyTemplateGroupViewModels
+            {
+                MoneyTemplateListViewModels=GetFakeData()
+            };
+            
+            return View(source);
+        }
 
-            return View(arrayMoney);
+        private IEnumerable<MoneyTemplateListViewModels> GetFakeData()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                yield return new MoneyTemplateListViewModels
+                {
+                    Id       = i,
+                    Category = i % 2 == 0 ? "支出" : "收入",
+                    Date     = DateTime.Now.AddHours(i),
+                    Money    = i * 1000,
+                };
+            }
         }
 
         // GET: MoneyTemplate
