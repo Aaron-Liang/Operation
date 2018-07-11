@@ -16,7 +16,7 @@ namespace Operation.Controllers
             var arrayMoney = randomValue.getNumbers(50, 5000);
             ViewBag.vbMoney = arrayMoney;
 
-            return View();
+            return View(arrayMoney);
         }
 
         // GET: MoneyTemplate
